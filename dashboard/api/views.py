@@ -8,8 +8,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
-from .models import Settlement, Carrier
-from .serializers import SettlementSerializer, CarrierSerializer
+from .models import Settlement, Carrier, Route
+from .serializers import SettlementSerializer, CarrierSerializer, RouteSerializer
 from rest_framework.decorators import list_route
 
 
@@ -24,11 +24,17 @@ class SettlementViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
 
 class CarrierViewSet(viewsets.ModelViewSet):
-
     queryset = Carrier.objects.all()
     serializer_class = CarrierSerializer
     authentication_classes = (TokenAuthentication, SessionAuthentication)
     permission_classes = (IsAuthenticated,)
+
+class RouteViewSet(viewsets.ModelViewSet):
+    queryset = Route.objects.all()
+    serializer_class = RouteSerializer
+    authentication_classes = (TokenAuthentication, SessionAuthentication)
+    permission_classes = (IsAuthenticated,)
+
 
 
 class CustomObtainAuthToken(ObtainAuthToken):

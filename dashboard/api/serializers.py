@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from .models import Settlement, Carrier
+from .models import Settlement, Carrier, Route
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -18,7 +18,11 @@ class SettlementSerializer(serializers.ModelSerializer):
         fields = ('id', 'title','settlement_type', 'start_date', 'end_date', 'year', 'quarter', 'stop_count', 'route_count', 'revenue', 'check_number', 'paid', 'carrier')
 
 class CarrierSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Carrier
         fields = ('company_name', 'user')
+
+class RouteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Route
+        fields = ('id', 'truck_number', 'route_date', 'mileage', 'piece_count', 'stop_count', 'carrier')

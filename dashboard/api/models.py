@@ -38,8 +38,19 @@ class Settlement(models.Model):
                                        default=REGULAR,
                                        )
 
+    def __str__(self):
+        return self.title
 
 
-
+class Route(models.Model):
+    id = models.IntegerField(primary_key=True)
+    truck_number = models.IntegerField()
+    route_date = models.DateField()
+    mileage = models.IntegerField()
+    piece_count = models.IntegerField()
+    stop_count = models.IntegerField()
+    #route_revenue = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)
+    carrier = models.ForeignKey(Carrier, on_delete=models.CASCADE)
+    #settlement = models.ForeignKey(Settlement, on_delete=models.CASCADE)
 
 

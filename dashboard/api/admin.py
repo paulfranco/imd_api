@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Settlement, Carrier
+from .models import Settlement, Carrier, Route
 
 @admin.register(Settlement)
 class SettlementAdmin(admin.ModelAdmin):
@@ -12,3 +12,9 @@ class CarrierAdmin(admin.ModelAdmin):
     fields = ('company_name', 'user')
     list_display = ['user']
     search_fields = ('user',)
+
+@admin.register(Route)
+class RouteAdmin(admin.ModelAdmin):
+    fields = ('truck_number', 'route_date', 'mileage', 'piece_count', 'stop_count', 'carrier')
+    list_display = ('id', 'truck_number', 'route_date', 'mileage', 'piece_count', 'stop_count', 'carrier')
+    search_fields = ('id',)
